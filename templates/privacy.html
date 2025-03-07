@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #8800ff, #154fcb, #14a6cb);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .privacy-container {
+            width: 85%;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(50, 4, 166, 0.4);
+            backdrop-filter: blur(15px);
+            text-align: left;
+        }
+        .privacy-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+        .privacy-option {
+            margin-bottom: 20px;
+        }
+        .privacy-option h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .privacy-option p {
+            font-size: 0.9rem;
+            color: #ddd;
+            margin-bottom: 10px;
+        }
+        .privacy-option label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #fff;
+        }
+        .privacy-option input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: linear-gradient(90deg, #2575fc, #6a11cb);
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+        }
+    </style>
+</head>
+<body>
+    <header>Privacy Settings</header>
+    <nav>
+        <!-- Back Button -->
+        <a href="#" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="/">Dashboard</a>
+        <a href="/login">Login/Register</a>
+        <a href="/settings">Settings</a>
+    </nav>
+
+    <div class="privacy-container">
+        <h2>Manage Your Privacy</h2>
+        
+        <!-- Profile Visibility -->
+        <div class="privacy-option">
+            <h3>Profile Visibility</h3>
+            <p>Control who can see your profile information.</p>
+            <label>
+                <input type="checkbox" name="profile-visibility" checked>
+                Make my profile public
+            </label>
+            <label>
+                <input type="checkbox" name="profile-visibility">
+                Allow employers to view my resume
+            </label>
+        </div>
+
+        <!-- Data Sharing -->
+        <div class="privacy-option">
+            <h3>Data Sharing</h3>
+            <p>Manage how your data is shared with third parties.</p>
+            <label>
+                <input type="checkbox" name="data-sharing" checked>
+                Allow data sharing for job recommendations
+            </label>
+            <label>
+                <input type="checkbox" name="data-sharing">
+                Allow data sharing for analytics
+            </label>
+        </div>
+
+        <!-- Account Activity -->
+        <div class="privacy-option">
+            <h3>Account Activity</h3>
+            <p>Control notifications and activity tracking.</p>
+            <label>
+                <input type="checkbox" name="account-activity" checked>
+                Send me email notifications
+            </label>
+            <label>
+                <input type="checkbox" name="account-activity">
+                Track my activity for personalized recommendations
+            </label>
+        </div>
+
+        <!-- Save Changes Button -->
+        <button class="btn" onclick="savePrivacySettings()">Save Changes</button>
+    </div>
+
+    <script>
+        function savePrivacySettings() {
+            const profileVisibility = document.querySelectorAll('input[name="profile-visibility"]');
+            const dataSharing = document.querySelectorAll('input[name="data-sharing"]');
+            const accountActivity = document.querySelectorAll('input[name="account-activity"]');
+
+            // Collect selected options
+            const settings = {
+                profileVisibility: {
+                    publicProfile: profileVisibility[0].checked,
+                    allowEmployers: profileVisibility[1].checked,
+                },
+                dataSharing: {
+                    jobRecommendations: dataSharing[0].checked,
+                    analytics: dataSharing[1].checked,
+                },
+                accountActivity: {
+                    emailNotifications: accountActivity[0].checked,
+                    activityTracking: accountActivity[1].checked,
+                },
+            };
+
+            // Save settings to localStorage (or send to backend)
+            localStorage.setItem("privacySettings", JSON.stringify(settings));
+            alert("Privacy settings saved successfully!");
+        }
+
+        // JavaScript function to go back one step in history
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #8800ff, #154fcb, #14a6cb);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .resume-container {
+            width: 85%;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(50, 4, 166, 0.4);
+            backdrop-filter: blur(15px);
+            text-align: left;
+        }
+        .resume-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+        .file-input {
+            margin-bottom: 20px;
+        }
+        .file-input label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #ddd;
+        }
+        .file-input input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .file-input input[type="file"]:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: linear-gradient(90deg, #2575fc, #6a11cb);
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+        }
+        .uploaded-resume {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>Upload Resume</header>
+    <nav>
+        <!-- Back Button -->
+        <a href="#" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="/">Dashboard</a>
+        <a href="/login">Login/Register</a>
+        <a href="/settings">Settings</a>
+    </nav>
+
+    <div class="resume-container">
+        <h2>Upload Your Resume</h2>
+        <form id="resumeForm" onsubmit="handleResumeUpload(event)">
+            <div class="file-input">
+                <label for="resume">Choose a file (PDF or DOC/DOCX):</label>
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+            </div>
+            <button class="btn" type="submit">Upload Resume</button>
+        </form>
+        <div class="uploaded-resume" id="uploadedResume"></div>
+    </div>
+
+    <script>
+        function handleResumeUpload(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const fileInput = document.getElementById('resume');
+            const uploadedResumeDiv = document.getElementById('uploadedResume');
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const fileType = file.type;
+
+                // Validate file type
+                if (fileType === 'application/pdf' || fileType === 'application/msword' || fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+                    // Display success message
+                    uploadedResumeDiv.innerHTML = `
+                        <p>Resume uploaded successfully: <strong>${file.name}</strong></p>
+                        <p>File type: <strong>${fileType}</strong></p>
+                    `;
+                } else {
+                    // Display error message for invalid file type
+                    uploadedResumeDiv.innerHTML = `<p style="color: red;">Invalid file type. Please upload a PDF or DOC/DOCX file.</p>`;
+                }
+            } else {
+                // Display error message if no file is selected
+                uploadedResumeDiv.innerHTML = `<p style="color: red;">Please select a file to upload.</p>`;
+            }
+        }
+
+        // JavaScript function to go back one step in history
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

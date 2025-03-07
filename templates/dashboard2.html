@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Dashboard Container */
+        .dashboard-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Resume Content Container */
+        .resume-content-container {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+
+        /* Left Side Content */
+        .resume-content-container-left-side {
+            flex: 1;
+            padding: 20px;
+            border-right: 2px solid #ddd;
+        }
+
+        .headline h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Resume Container */
+        .resume-container {
+            margin-top: 10px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .resume-container p {
+            color: #666;
+        }
+
+        .resume-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .resume-container a:hover {
+            background: #0056b3;
+        }
+
+        /* Right Side Content */
+        .resume-content-container-right-side {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .upload-resume-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .upload-resume-container img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .upload-resume-container input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .upload-resume-container button {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .upload-resume-container button:hover {
+            background: #218838;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .resume-content-container {
+                flex-direction: column;
+            }
+
+            .resume-content-container-left-side {
+                border-right: none;
+                border-bottom: 2px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include 'indexNavbar.html' %}
+    <div class="dashboard-container">
+        {% include 'dashboardSidebar.html' %}
+        <div class="resume-content-container">
+            {% if session['role_id'] == 1 %}
+                <div class="resume-content-container-left-side">
+                    <div class="headline">
+                        <h3>My Resume</h3>
+                    </div>
+                    <div class="resume-container">
+                        {% if user.resume == '' %}
+                            <p>No Resume!! Please Upload.</p>
+                        {% else %}
+                            <a href="{{ url_for('static', filename='assets/resume/' + user.resume) }}" target="_blank" class="btn btn-secondary">View Resume</a>
+                            <a href="{{ url_for('static', filename='assets/resume/' + user.resume) }}" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-download" style="color:white; font-size:1rem;margin-right:.25rem;"></i> Resume</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="resume-content-container-right-side">
+                    <div class="headline">
+                        <h3>Change Resume</h3>
+                    </div>
+                    <div class="upload-resume-container">
+                        <img src="{{ url_for('static', filename='assets/images/pdf.png') }}" alt="" />
+                        <form method="POST" action="{{ url_for('change_resume') }}" enctype="multipart/form-data">
+                            <input name="resume" type="file" accept=".pdf" required>
+                            <button type="submit" class="btn btn-secondary" name="changeResume">Change Resume</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

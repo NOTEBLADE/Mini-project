@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Cyber Security Analyst at SecureTech</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #8800ff, #154fcb, #14a6cb);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .job-details-container {
+            width: 85%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(50, 4, 166, 0.4);
+            backdrop-filter: blur(15px);
+            text-align: left;
+        }
+        .job-details-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+        .job-details-container p {
+            font-size: 1rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+        .apply-form {
+            margin-top: 20px;
+        }
+        .apply-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1rem;
+            color: #fff;
+        }
+        .apply-form input, .apply-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .apply-form input:focus, .apply-form textarea:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
+        .apply-form button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: linear-gradient(90deg, #2575fc, #6a11cb);
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .apply-form button:hover {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+        }
+    </style>
+</head>
+<body>
+    <header>Apply for Cyber Security Analyst at SecureTech</header>
+    <nav>
+        <a href="/"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="/">Dashboard</a>
+        <a href="/login">Login/Register</a>
+        <a href="/settings">Settings</a>
+    </nav>
+
+    <div class="job-details-container">
+        <h2>Job Details</h2>
+        <p><strong>Company:</strong> SecureTech</p>
+        <p><strong>Location:</strong> Delhi, India</p>
+        <p><strong>Salary:</strong> $90,000 - $110,000</p>
+        <p><strong>Job Type:</strong> Full-time</p>
+        <p><strong>Experience Needed:</strong> 4+ years</p>
+        <p><strong>Skills Required:</strong> Network Security, Ethical Hacking, SIEM Tools</p>
+        <p><strong>Job Description:</strong> We are looking for a Cyber Security Analyst to monitor and protect our network infrastructure. The ideal candidate will have expertise in network security and ethical hacking.</p>
+
+        <h2>About SecureTech</h2>
+        <p>SecureTech is a leading cybersecurity firm that provides advanced solutions to protect businesses from cyber threats. We are committed to delivering top-notch security services to our clients.</p>
+
+        <h2>Apply Now</h2>
+        <form class="apply-form" onsubmit="handleApplication(event)">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="resume">Resume (PDF only)</label>
+            <input type="file" id="resume" name="resume" accept=".pdf" required>
+
+            <label for="coverLetter">Cover Letter</label>
+            <textarea id="coverLetter" name="coverLetter" rows="5" required></textarea>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+
+    <script>
+        function handleApplication(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const resume = document.getElementById('resume').files[0];
+            const coverLetter = document.getElementById('coverLetter').value;
+
+            // Validate file type
+            if (resume && resume.type !== 'application/pdf') {
+                alert("Please upload a PDF file for your resume.");
+                return;
+            }
+
+            // Simulate application submission (replace with backend API call)
+            const applicationData = {
+                fullName,
+                email,
+                phone,
+                resume: resume ? resume.name : null,
+                coverLetter,
+            };
+
+            // Save to localStorage (for demonstration purposes)
+            localStorage.setItem("applicationData", JSON.stringify(applicationData));
+
+            alert("Application submitted successfully!");
+            window.location.href = "/"; // Redirect to job listings
+        }
+    </script>
+</body>
+</html>

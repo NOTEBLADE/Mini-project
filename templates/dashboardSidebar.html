@@ -1,0 +1,31 @@
+<aside>
+    <ul>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Settings</a></li>
+    </ul>
+</aside>
+
+<style>
+    aside {
+        background: #f4f4f4;
+        padding: 20px;
+        width: 200px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    aside ul {
+        list-style: none;
+        padding: 0;
+    }
+    aside ul li {
+        margin-bottom: 10px;
+    }
+    aside ul li a {
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    aside ul li a:hover {
+        text-decoration: underline;
+    }
+</style>

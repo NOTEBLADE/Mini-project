@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #8800ff, #154fcb, #14a6cb);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .notifications-container {
+            width: 85%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(50, 4, 166, 0.4);
+            backdrop-filter: blur(15px);
+            text-align: left;
+        }
+        .notifications-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+        .notification-section {
+            margin-bottom: 30px;
+        }
+        .notification-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .notification-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        .notification-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+        .notification-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .notification-item p {
+            font-size: 0.9rem;
+            color: #ddd;
+            margin-bottom: 5px;
+        }
+        .notification-item .date {
+            font-size: 0.8rem;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+    <header>Notifications</header>
+    <nav>
+        <!-- Back Button -->
+        <a href="#" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="/">Dashboard</a>
+        <a href="/login">Login/Register</a>
+        <a href="/settings">Settings</a>
+    </nav>
+
+    <div class="notifications-container">
+        <h2>Your Notifications</h2>
+
+        <!-- New Job Offers Section -->
+        <div class="notification-section">
+            <h3>New Job Offers</h3>
+            <div class="notification-item">
+                <h4>Software Engineer at TechCorp</h4>
+                <p>Location: Remote</p>
+                <p>Salary: $80,000 - $100,000</p>
+                <p class="date">Posted: 2 days ago</p>
+            </div>
+            <div class="notification-item">
+                <h4>Data Analyst at DataWorld</h4>
+                <p>Location: New York, NY</p>
+                <p>Salary: $70,000 - $90,000</p>
+                <p class="date">Posted: 3 days ago</p>
+            </div>
+            <div class="notification-item">
+                <h4>Product Manager at Innovate Inc.</h4>
+                <p>Location: San Francisco, CA</p>
+                <p>Salary: $100,000 - $120,000</p>
+                <p class="date">Posted: 5 days ago</p>
+            </div>
+        </div>
+
+        <!-- Upcoming Interviews Section -->
+        <div class="notification-section">
+            <h3>Upcoming Interviews</h3>
+            <div class="notification-item">
+                <h4>Interview with TechCorp</h4>
+                <p>Role: Software Engineer</p>
+                <p>Date: October 25, 2023</p>
+                <p>Time: 10:00 AM</p>
+                <p class="date">Scheduled: 1 day ago</p>
+            </div>
+            <div class="notification-item">
+                <h4>Interview with DataWorld</h4>
+                <p>Role: Data Analyst</p>
+                <p>Date: October 28, 2023</p>
+                <p>Time: 2:00 PM</p>
+                <p class="date">Scheduled: 3 days ago</p>
+            </div>
+        </div>
+
+        <!-- Other Notifications Section -->
+        <div class="notification-section">
+            <h3>Other Notifications</h3>
+            <div class="notification-item">
+                <h4>Profile Update Reminder</h4>
+                <p>Your profile is 80% complete. Update your skills and experience to improve your job matches.</p>
+                <p class="date">Received: 1 week ago</p>
+            </div>
+            <div class="notification-item">
+                <h4>New Job Alert: Marketing Manager</h4>
+                <p>Location: Chicago, IL</p>
+                <p>Salary: $90,000 - $110,000</p>
+                <p class="date">Received: 2 weeks ago</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript function to go back one step in history
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

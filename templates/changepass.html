@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #8800ff, #154fcb, #14a6cb);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .change-password-container {
+            width: 85%;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(50, 4, 166, 0.4);
+            backdrop-filter: blur(15px);
+            text-align: left;
+        }
+        .change-password-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1rem;
+            color: #ddd;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .input-group input:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: linear-gradient(90deg, #2575fc, #6a11cb);
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>Change Password</header>
+    <nav>
+        <!-- Back Button -->
+        <a href="#" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="/">Dashboard</a>
+        <a href="/login">Login/Register</a>
+        <a href="/settings">Settings</a>
+    </nav>
+
+    <div class="change-password-container">
+        <h2>Update Your Password</h2>
+        <form id="changePasswordForm" onsubmit="handleChangePassword(event)">
+            <!-- Current Password -->
+            <div class="input-group">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" id="currentPassword" name="currentPassword" required minlength="6">
+            </div>
+
+            <!-- New Password -->
+            <div class="input-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" name="newPassword" required minlength="6">
+            </div>
+
+            <!-- Confirm New Password -->
+            <div class="input-group">
+                <label for="confirmNewPassword">Confirm New Password</label>
+                <input type="password" id="confirmNewPassword" name="confirmNewPassword" required minlength="6">
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage">
+                Passwords do not match. Please try again.
+            </div>
+
+            <!-- Submit Button -->
+            <button class="btn" type="submit">Change Password</button>
+        </form>
+    </div>
+
+    <script>
+        function handleChangePassword(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Validate if new password and confirm password match
+            if (newPassword !== confirmNewPassword) {
+                errorMessage.style.display = 'block'; // Show error message
+                return;
+            }
+
+            // Hide error message if passwords match
+            errorMessage.style.display = 'none';
+
+            // Simulate password change (replace with backend API call)
+            const passwordData = {
+                currentPassword,
+                newPassword,
+            };
+
+            // Save to localStorage (for demonstration purposes)
+            localStorage.setItem("passwordData", JSON.stringify(passwordData));
+
+            alert("Password changed successfully!");
+            window.location.href = "settings.html"; // Redirect to settings page
+        }
+
+        // JavaScript function to go back one step in history
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
